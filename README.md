@@ -37,6 +37,35 @@ The datasets used in this project were obtained from the official [DeepDRA repos
 A matched **single-phase AE-MLP baseline** (DeepDRA-derived) is implemented for comparison.
 It uses the same architecture but is trained end-to-end on labeled data without unsupervised pretraining.
 
+## Method 1: AE-MLP
+
+AE-MLP is a single-stage supervised model that jointly trains autoencoders and an MLP classifier.
+
+To run AE-MLP:
+```bash
+python AE-MLP_main.py
+```
+
+## Method 2: STaR-DR (proposed framework)
+
+STaR-DR follows a three-stage pipeline. To run STaR-DR:
+
+### Phase 1: Unsupervised pretraining of autoencoders
+```bash
+python pretrain_autoencoders.py
+```
+
+### Phase 2: Task-specific training on labeled data
+```bash
+python train_mlp_on_latent.py
+```
+
+## Patient adaptation
+The few_shot_learning.py script can be run after either the AE-MLP or STaR-DR training stages to evaluate few-shot adaptation performance.
+```bash
+python few_shot_learning.py
+```
+
 ## Disclaimer
 This repository is for research and educational purposes only and is not intended for clinical use.
 
